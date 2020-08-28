@@ -280,17 +280,35 @@
  
  
                 
+               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                
-               <script src="{{ asset('js/app.js') }}" defer></script>
   
-                <body>
-                   <script>
-                       $(function() {
-                              alert('jquery');
-                       });
-　                 </script>
+    <body>
+  ID : <input type="text" id="id" />
+  <button id="btn">SEND</button>
+  <div><br></div>
+  <div id="res">戻り値が表示される</div>
+  <script>
+  $(function(){
+    // ボタンがクリックされたら
+    $("#btn").on("click", function(event){
+      // 入力されたID値を取得
+      id = $("#id").val();
+      $.ajax({
+        type: "POST",
+        url: "/home/ec2-user/environment/inheritance/resources/views/admin/rate/ajax.php",
+        data: { "id" : id },
+        dataType : "json"
+      }).done(function(data){
+        $("#res").text(data.id+' : '+data.name+' : '+data.hoge);
+      }).fail(function(XMLHttpRequest, textStatus, error){
+        alert(error);
+      });
+    });
+  });
+  </script>
+</body>            
 
-                </body>
 
     
 
