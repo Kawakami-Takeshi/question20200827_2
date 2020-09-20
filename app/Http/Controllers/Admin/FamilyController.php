@@ -13,7 +13,12 @@ class FamilyController extends Controller
   {
       return view('admin.family.create');
   }
-  
+  /*
+  public function add2()  //顧客一覧へ戻るボタン対応
+  {
+      return redirect('admin/family');
+  }
+  */
   public function create(Request $request)
   {
       // Varidationを行う
@@ -26,7 +31,8 @@ class FamilyController extends Controller
       $family->fill($form);
       $family->save();
       
-      return redirect('admin/family/create');
+      return redirect('admin/rate/create')->with('idid',$family->id);  //return viewだとURLが変わらないので、redirectを使用
+      //return redirect('admin/family/create');
   }
 
   public function index(Request $request)
@@ -42,14 +48,41 @@ class FamilyController extends Controller
       return view('admin.family.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
 
-  public function edit()
+  public function edit(Request $request)
   {
-      return view('admin.family.edit');
+      // News Modelからデータを取得する
+      $family = Family::find($request->id);
+      if (empty($family)) {
+        abort(404);    
+      }
+      return view('admin.family.edit', ['family_form' => $family]);
   }
+  
+ 
 
-  public function update()
+  public function update(Request $request)
   {
-      return redirect('admin/family/edit');
+      // Validationをかける
+      $this->validate($request, Family::$rules);
+      // News Modelからデータを取得する
+      $family = Family::find($request->id);
+      // 送信されてきたフォームデータを格納する
+      $family_form = $request->all();
+      unset($family_form['_token']);
+
+      // 該当するデータを上書きして保存する
+      $family->fill($family_form)->save();
+
+      return redirect('admin/rate/create')->with('idid',$request->id);  //return viewだとURLが変わらないので、redirectを使用
+  }
+  
+  public function delete(Request $request)
+  {
+      // 該当するNews Modelを取得
+      $family = Family::find($request->id);
+      // 削除する
+      $family->delete();
+      return redirect('admin/family/');
   }
   
 }

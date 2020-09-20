@@ -147,7 +147,13 @@ return [
 
     'attributes' => [
         'fname' => 'ファミリー名',
-        'n_child' => '子供の数'
+        'n_child' => '子供の数',
+        'familyid' => 'ファミリーID',
+        'familyname' => 'ファミリー名',
+        'iid' => '相続人ID',
+        'iname' => '相続人名',
+        'category' => '資産カテゴリー',
+        'kingaku' => '金額',
     ],
 
 ];

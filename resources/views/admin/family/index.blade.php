@@ -47,6 +47,14 @@
                                     <td>{{ \Str::limit($family->marital_status, 50) }}</td>
                                     <td>{{ \Str::limit($family->n_child, 50) }}</td>
                                     <td>{{ \Str::limit($family->exinfo, 100) }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\FamilyController@edit', ['id' => $family->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ action('Admin\FamilyController@delete', ['id' => $family->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

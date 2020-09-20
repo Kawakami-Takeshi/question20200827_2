@@ -1,6 +1,8 @@
 <?php
 //相続人ID,相続税法定相続割合分子,相続税法定相続割合分母,民法法定相続割合分子,民法法定相続割合分母,配偶者フラグ,二割加算フラグ,
 //相続人IDを1次元目、法定相続割合や財産など14項目を２次元目とした多重連想配列をインプットとする
+
+/*
 $d1=array(1,2,3);  //相続人ID
 $d2='相続人名';
 $d3='相続税法定相続割合分子';
@@ -57,6 +59,8 @@ for($i=1 ; $i< count($d1) ; $i++){
   );
 }
 
+*/
+
 function i_tax($list){
   //INPUT
   //相続人の名前を1次元目、下記14項目を２次元目とした多重連想配列
@@ -88,12 +92,14 @@ function i_tax($list){
   };
   $thokeng=array_sum(array_column($list,'保険非課税計算対象額')); //非課税対象額の分母(合計値)
   for($i=1 ; $i<= $n1 ; $i++){
-    if($list[$i]['民法法定相続割合分子']>0){
+    if(($list[$i]['民法法定相続割合分子']>0)&&($list[$i]['保険非課税計算対象額']>0)&&($thokeng>0)){
       $thoken= ($list[$i]['保険非課税計算対象額']/$thokeng)*$hokenm;
+      $list[$i]['生命保険非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
     }else{
       $thoken=0;
+      $list[$i]['生命保険非課税額']=0;
     };
-    $list[$i]['生命保険非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
+    //$list[$i]['生命保険非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
   };
   //死亡退職金の非課税額
   for($i=1 ; $i<= $n1 ; $i++){
@@ -106,12 +112,14 @@ function i_tax($list){
   };
   $thokeng=array_sum(array_column($list,'退職金非課税計算対象額')); //非課税対象額の分母(合計値)
   for($i=1 ; $i<= $n1 ; $i++){
-    if($list[$i]['民法法定相続割合分子']>0){
+    if(($list[$i]['民法法定相続割合分子']>0)&&($list[$i]['退職金非課税計算対象額'])&&($thokeng>0)){
       $thoken= ($list[$i]['退職金非課税計算対象額']/$thokeng)*$taim;
+      $list[$i]['退職金非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
     }else{
       $thoken=0;
+      $list[$i]['退職金非課税額']=0;
     };
-    $list[$i]['退職金非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
+    //$list[$i]['退職金非課税額']=floor( $thoken * pow( 10 , 4 ) ) / pow( 10 , 4 ) ;  //小数点第４位未満切り捨て
   };
   //純資産価額など計算
   for($i=1 ; $i<= $n1 ; $i++){
@@ -209,7 +217,8 @@ function i_tax($list){
 
 };
 
-print_r(i_tax($list));
-//print_r($list);
+//$xxx=i_tax($list);
+//print_r($xxx[2]['納付税額']);
+
 
 ?>
