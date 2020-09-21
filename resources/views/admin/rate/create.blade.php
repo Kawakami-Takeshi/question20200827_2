@@ -12,7 +12,9 @@
    }
    $kazu = \App\Family::whereIn('id', [$fid])->value('n_child');  //子供の数
    //関数で必要な情報を計算
-   require_once '/home/ec2-user/environment/inheritance/myfunc/inheritance_rate.php';
+   //require_once '/home/ec2-user/environment/inheritance/myfunc/inheritance_rate.php';
+   require_once base_path() . '/myfunc/inheritance_rate.php';
+   
    $aaa=i_rate($hai,$kazu);
    $bbb=count($aaa);  //配列の数
    $bbb_json=json_encode($bbb);  //相続人の数をJSに渡すために変換
