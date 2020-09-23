@@ -7,54 +7,37 @@ $data3 = filter_input( INPUT_GET, 'finfo' , FILTER_DEFAULT,FILTER_REQUIRE_ARRAY)
 $data3n=count($data3);  //ファミリー数
 $datah = filter_input( INPUT_GET, 'hai' );  //配偶者有無  変数を受け取る場合
 
-//MySQLへ入る呪文
-$dbh = new PDO('mysql:host=127.0.0.1;dbname=inheritance;charset=utf8','kawakami','Kawa/202007');
+\App\Asset::where('familyid', $data1)->delete();  //既存レコードを削除
 
-//既存レコードを削除
-$sqld = "DELETE FROM assets WHERE familyid = :id";
-$stmtx = $dbh->prepare($sqld);
-$params2 = array(':id'=>$data1);
-$stmtx->execute($params2);
-$stmtx = null;
-$dbh = null;
-
-//受け入れデータをassetsテーブルに格納
-$dbh = new PDO('mysql:host=127.0.0.1;dbname=inheritance;charset=utf8','kawakami','Kawa/202007');
-$sql = "INSERT INTO assets (familyid,familyname,iid,iname,category,assetname,hihokenid,ukeid,zoyoid,zoyoy,suryo,kingaku,zoyozei,created_at,updated_at)";
-$sql.= " VALUES ( :familyid, :familyname, :iid, :iname, :category, :assetname, :hihokenid, :ukeid, :zoyoid, :zoyoy, :suryo, :kingaku, :zoyozei, now(), now())";
-// 挿入する値は空のまま、SQL実行の準備をする
-$stmt = $dbh->prepare($sql);
+//DBにdata2を挿入
 for($i=0 ; $i< $data2n ; $i++){
-  // DBに挿入する値を配列に格納する
-if($data2[$i][7]==""){
-  $data2[$i][7]=null;
+   // DBに挿入する値を配列に格納する
+  if($data2[$i][7]==""){
+    $data2[$i][7]=null;
+  };
+  \App\Asset::insert([
+      'familyid' => $data2[$i][0],
+      'familyname' => $data2[$i][1],
+      'iid' => $data2[$i][2],
+      'iname' => $data2[$i][3],
+      'category' => $data2[$i][4],
+      'assetname' => null,
+      'hihokenid' => null,
+      'ukeid' => $data2[$i][7],
+      'zoyoid' => null,
+      'zoyoy' => null,
+      'suryo' => null,
+      'kingaku' => $data2[$i][11],
+      'zoyozei' => null,
+      'created_at' => now(),
+      'updated_at' => now()
+  ]);
 };
-$params = array(':familyid' => $data2[$i][0],
-                ':familyname' => $data2[$i][1],
-                ':iid' => $data2[$i][2],
-                ':iname' => $data2[$i][3],
-                ':category' => $data2[$i][4],
-                ':assetname' => null,
-                ':hihokenid' => null,
-                ':ukeid' => $data2[$i][7],
-                ':zoyoid' => null,
-                ':zoyoy' => null,
-                ':suryo' => null,
-                ':kingaku' => $data2[$i][11],
-                ':zoyozei' => null,
-                );
- 
-$stmt->execute($params);
-};
-$stmt = null;
-$dbh = null;
-//DBインプット完了
-
 
 //相続税計算後の配列を再びcreate.blade.phpに返す
 
-require_once '/home/ec2-user/environment/inheritance/myfunc/inheritance_tax.php';  //相続税計算関数
-
+//require_once '/home/ec2-user/environment/inheritance/myfunc/inheritance_tax.php';  //相続税計算関数
+require_once base_path() . '/myfunc/inheritance_tax.php';  //相続税計算関数
 //関数へのインプット配列作成 START
 $i=0;
 //本来の取得資産集計

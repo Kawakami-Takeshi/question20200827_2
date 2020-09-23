@@ -23,10 +23,9 @@
    $fid_json=json_encode($fid); //ファミリーID
    $hai_json=json_encode($hai); //配偶者フラグ
    //ファミリーの資産情報を取得
-   //MySQLへ入る呪文
-   $dbh = new PDO('mysql:host=127.0.0.1;dbname=inheritance;charset=utf8','kawakami','Kawa/202007');
-   $sql = "SELECT iid,category,kingaku FROM assets WHERE familyid = ".$fid;
-   $stmt = $dbh->query($sql);
+   $ase = \App\Asset::select('iid','category','kingaku')->where('familyid', $fid)->get();
+   $stmt =$ase;
+   
    $kg=0;
    $fg=0;
    $hg=0;
