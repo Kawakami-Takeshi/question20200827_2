@@ -13,8 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
-
+    //'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', '河上健税理士事務所'),
+    
     /*
     |--------------------------------------------------------------------------
     | Application Environment

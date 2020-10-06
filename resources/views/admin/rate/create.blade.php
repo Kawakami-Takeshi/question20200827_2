@@ -159,43 +159,43 @@
                         <tr>
                             <td width="180">合計（万円）</td>
                             <td>
-                                <input type="text" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="totallall" class="form-control" value=0 disabled=true>
+                                <input type="text" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="totallall" class="form-control" value=0 disabled=true>
                             </td>
                         </tr>
                         <tr>
                             <!--保険金の非課税額-->
                             <td>
-                                <input type="text" width="180" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="hht" class="form-control" value="" disabled=true>
+                                <input type="text" width="180" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="hht" class="form-control" value="" disabled=true>
                             </td>
                             <td>
-                                <input type="text" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="hhall" class="form-control" value="" disabled=true>
+                                <input type="text" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="hhall" class="form-control" value="" disabled=true>
                             </td>
                         </tr>
                         <tr>
                             <!--課税遺産総額-->
                             <td>
-                                <input type="text" width="180" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="kit" class="form-control" value="" disabled=true>
+                                <input type="text" width="180" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="kit" class="form-control" value="" disabled=true>
                             </td>
                             <td>
-                                <input type="text" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="kiall" class="form-control" value="" disabled=true>
+                                <input type="text" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="kiall" class="form-control" value="" disabled=true>
                             </td>
                         </tr>
                         <tr>
                             <!--納税額-->
                             <td>
-                                <input type="text" width="180" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="nzt" class="form-control" value="" disabled=true>
+                                <input type="text" width="180" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="nzt" class="form-control" value="" disabled=true>
                             </td>
                             <td>
-                                <input type="text" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="nzall" class="form-control" value="" disabled=true>
+                                <input type="text" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="nzall" class="form-control" value="" disabled=true>
                             </td>
                         </tr>
                         <tr>
                             <!--正味承継資産-->
                             <td>
-                                <input type="text" width="180" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="sst" class="form-control" value="" disabled=true>
+                                <input type="text" width="180" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="sst" class="form-control" value="" disabled=true>
                             </td>
                             <td>
-                                <input type="text" style="background-color:#000000;font-size:15;color:#FFFFFF;border:none" id="ssall" class="form-control" value="" disabled=true>
+                                <input type="text" style="background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none" id="ssall" class="form-control" value="" disabled=true>
                             </td>
                         </tr>
                     </tbody>
@@ -292,7 +292,7 @@
 		                           }else{
 		                               input1.setAttribute("value",0);
 		                           }
-		                           input1.setAttribute("style","background-color:#000000;font-size:15;color:#FFFFFF;border:none");
+		                           input1.setAttribute("style","background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none");
 		                           input1.setAttribute("disabled",true);
 		                           tblObj.rows[5].cells[i].appendChild(input1);
 		                           //保険非課税額,非入力セル
@@ -302,7 +302,7 @@
 		                           input1.setAttribute("class","form-control");
 		                           input1.setAttribute("id","hhbox"+ary[i-2][0]);
 		                           input1.setAttribute("value","");
-		                           input1.setAttribute("style","background-color:#000000;font-size:15;color:#FFFFFF;border:none");
+		                           input1.setAttribute("style","background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none");
 		                           input1.setAttribute("disabled",true);
 		                           tblObj.rows[6].cells[i].appendChild(input1);
 		                           //課税遺産総額,非入力セル
@@ -312,7 +312,7 @@
 		                           input1.setAttribute("class","form-control");
 		                           input1.setAttribute("id","kibox"+ary[i-2][0]);
 		                           input1.setAttribute("value","");
-		                           input1.setAttribute("style","background-color:#000000;font-size:15;color:#FFFFFF;border:none");
+		                           input1.setAttribute("style","background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none");
 		                           input1.setAttribute("disabled",true);
 		                           tblObj.rows[7].cells[i].appendChild(input1);
 		                           //納税額,非入力セル
@@ -322,7 +322,7 @@
 		                           input1.setAttribute("class","form-control");
 		                           input1.setAttribute("id","nzbox"+ary[i-2][0]);
 		                           input1.setAttribute("value","");
-		                           input1.setAttribute("style","background-color:#000000;font-size:15;color:#FFFFFF;border:none");
+		                           input1.setAttribute("style","background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none");
 		                           input1.setAttribute("disabled",true);
 		                           tblObj.rows[8].cells[i].appendChild(input1);
 		                           //正味承継資産,非入力セル
@@ -332,7 +332,7 @@
 		                           input1.setAttribute("class","form-control");
 		                           input1.setAttribute("id","ssbox"+ary[i-2][0]);
 		                           input1.setAttribute("value","");
-		                           input1.setAttribute("style","background-color:#000000;font-size:15;color:#FFFFFF;border:none");
+		                           input1.setAttribute("style","background-color:rgb(255,255,255);font-size:15;color:rgb(115,115,115);border:none");
 		                           input1.setAttribute("disabled",true);
 		                           tblObj.rows[9].cells[i].appendChild(input1);
                                  }
